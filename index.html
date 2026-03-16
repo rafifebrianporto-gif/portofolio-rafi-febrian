@@ -1,0 +1,1564 @@
+<!DOCTYPE html>
+<html lang="id">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Rafi Febrian Nugroho | Mechanical Engineering</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Tailwind CSS via CDN -->
+    <script src="https://cdn.tailwindcss.com"></script>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="icon" type="image/x-icon" href="assets/img/favicon.ico">
+    <style>
+        /* Custom CSS untuk animasi dan efek tambahan */
+        :root {
+            --primary-color: #00539F;
+            --secondary-color: #00AEEF;
+            --accent-color: #f59e0b;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+
+        /* Animasi fade in */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.8s ease, transform 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* Efek gradient teks */
+        .gradient-text {
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            -webkit-background-clip: text;
+            background-clip: text;
+            color: transparent;
+        }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f1f1;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-color);
+            border-radius: 5px;
+        }
+
+        /* Efek hover untuk kartu */
+        .hover-card {
+            transition: all 0.3s ease;
+        }
+
+        .hover-card:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 25px -5px rgba(0, 0, 0, 0.1), 0 10px 10px -5px rgba(0, 0, 0, 0.04);
+        }
+
+        /* Timeline style */
+        .timeline-item {
+            position: relative;
+            padding-left: 2rem;
+        }
+
+        .timeline-item::before {
+            content: '';
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 4px;
+            height: 100%;
+            background: linear-gradient(to bottom, var(--primary-color), var(--secondary-color));
+            border-radius: 2px;
+        }
+
+        .timeline-dot {
+            position: absolute;
+            left: -8px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: var(--primary-color);
+            border-radius: 50%;
+            border: 4px solid white;
+            box-shadow: 0 0 0 3px var(--primary-color);
+        }
+
+        /* Overlay untuk modal */
+        .modal-overlay {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background-color: rgba(0, 0, 0, 0.8);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 1000;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease, visibility 0.3s ease;
+        }
+
+        .modal-overlay.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* Animasi untuk hamburger menu */
+        .hamburger-line {
+            transition: all 0.3s ease;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(1) {
+            transform: rotate(45deg) translate(6px, 6px);
+        }
+
+        .hamburger.active .hamburger-line:nth-child(2) {
+            opacity: 0;
+        }
+
+        .hamburger.active .hamburger-line:nth-child(3) {
+            transform: rotate(-45deg) translate(6px, -6px);
+        }
+
+        /* Skill badge styling */
+        .skill-badge {
+            transition: all 0.3s ease;
+        }
+
+        .skill-badge:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+        }
+
+        /* Skill progress bar */
+        .skill-bar {
+            height: 10px;
+            background-color: #e5e7eb;
+            border-radius: 5px;
+            overflow: hidden;
+        }
+
+        .skill-progress {
+            height: 100%;
+            background: linear-gradient(90deg, var(--primary-color), var(--secondary-color));
+            border-radius: 5px;
+            transition: width 1.5s ease-in-out;
+        }
+    </style>
+</head>
+
+<body class="bg-gray-50 text-gray-800">
+    <!-- Navbar -->
+    <nav id="navbar"
+        class="fixed top-0 left-0 w-full bg-white/90 backdrop-blur-sm shadow-sm z-50 transition-all duration-300">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo -->
+                <a href="#home" class="text-2xl font-bold gradient-text">Rafi Febrian Nugroho</a>
+
+                <!-- Menu Desktop -->
+                <div class="hidden md:flex space-x-8">
+                    <a href="#home"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Home</a>
+                    <a href="#about"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">About</a>
+                    <a href="#software"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Software
+                        Skills</a>
+                    <a href="#certificates"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Certificates</a>
+                    <a href="#portfolio"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Portfolio</a>
+                    <a href="#gallery"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Gallery</a>
+                    <a href="#contact"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Contact</a>
+                </div>
+
+                <!-- Hamburger Menu (Mobile) -->
+                <div class="md:hidden">
+                    <button id="hamburger-btn" class="hamburger focus:outline-none">
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800 mb-1.5"></div>
+                        <div class="hamburger-line w-6 h-0.5 bg-gray-800"></div>
+                    </button>
+                </div>
+            </div>
+
+            <!-- Menu Mobile -->
+            <div id="mobile-menu" class="md:hidden hidden bg-white shadow-lg rounded-lg mt-2 py-4 px-4">
+                <div class="flex flex-col space-y-4">
+                    <a href="#home"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Home</a>
+                    <a href="#about"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">About</a>
+                    <a href="#software"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Software
+                        Skills</a>
+                    <a href="#certificates"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Certificates</a>
+                    <a href="#portfolio"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Portfolio</a>
+                    <a href="#gallery"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Gallery</a>
+                    <a href="#contact"
+                        class="text-gray-700 hover:text-[#00539F] font-medium transition-colors duration-300">Contact</a>
+                </div>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="pt-24 pb-16 md:pt-32 md:pb-24 bg-gradient-to-r from-blue-50 to-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row items-center">
+                <div class="md:w-1/2 mb-10 md:mb-0 fade-in">
+                    <h1 class="text-4xl md:text-5xl lg:text-6xl font-bold mb-4">
+                        <span class="gradient-text">Rafi Febrian Nugroho</span>
+                    </h1>
+                    <h2 class="text-xl md:text-2xl text-gray-600 mb-6">Mechanical Engineering Student | Design &
+                        Manufacturing Enthusiast</h2>
+                    <p class="text-gray-700 mb-8 max-w-lg">
+                        Mahasiswa D4 Teknik Perancangan dan Konstruksi Mesin Politeknik Negeri Bandung semester 6,
+                        berpengalaman dalam memimpin dan mengelola organisasi Polban EV (Electric Vehicle). Memiliki
+                        pengalaman dalam berbagai proyek manufaktur seperti pembuatan kendaraan Soapbox, pengembangan
+                        mobil listrik P-Elcar V2 dan V3 untuk kompetisi nasional, serta manufaktur mobil golf listrik.
+                        Menguasai desain 3D dan gambar teknik 2D menggunakan SolidWorks dan Mastercam, serta
+                        berpengalaman mengoperasikan mesin bubut, frais, dan CNC
+                    </p>
+                    <div class="flex flex-col sm:flex-row space-y-4 sm:space-y-0 sm:space-x-6">
+                        <a href="#contact"
+                            class="bg-[#00539F] hover:bg-[#004080] text-white font-medium py-3 px-6 rounded-lg shadow-md hover:shadow-lg transition-all duration-300 text-center">
+                            <i class="fas fa-envelope mr-2"></i> Hubungi Saya
+                        </a>
+                        <a href="assets/CV/cv.pdf" download="Rafi_Febrian_Nugroho_CV.pdf"
+                            class="bg-white hover:bg-gray-100 text-[#00539F] font-medium py-3 px-6 rounded-lg border border-[#00539F] shadow-md hover:shadow-lg transition-all duration-300 text-center">
+                            <i class="fas fa-download mr-2"></i> Download CV
+                        </a>
+                    </div>
+                </div>
+                <div class="md:w-1/2 flex justify-center fade-in">
+                    <div class="relative">
+                        <div
+                            class="w-64 h-64 md:w-80 md:h-80 rounded-full overflow-hidden shadow-2xl border-4 border-white">
+                            <img src="assets/img/profil.jpeg" alt="Rafi Febrian Nugroho"
+                                class="w-full h-full object-cover">
+                        </div>
+                        <div class="absolute -bottom-4 -right-4 bg-[#00AEEF] text-white py-2 px-4 rounded-lg shadow-lg">
+                            <span class="font-bold">Design Engineering</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">About Me</h2>
+                <div class="w-20 h-1 bg-[#00539F] mx-auto"></div>
+            </div>
+
+            <div class="flex flex-col md:flex-row items-center fade-in">
+                <div class="md:w-1/3 mb-8 md:mb-0">
+                    <div class="bg-gradient-to-br from-blue-100 to-blue-50 p-6 rounded-xl shadow-lg">
+                        <h3 class="text-xl font-bold mb-4 text-[#00539F]">Profil</h3>
+                        <div class="space-y-3">
+                            <div class="flex items-center">
+                                <i class="fas fa-user-graduate text-[#00539F] mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Mahasiswa</p>
+                                    <p class="text-gray-600">Teknik Perancangan & Konstruksi Mesin</p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-map-marker-alt text-[#00539F] mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Alamat</p>
+                                    <p class="text-gray-600">Jl. Babakan Baru NO.18, Kota Bandung, Jawa Barat 40125
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="flex items-center">
+                                <i class="fas fa-star text-[#00539F] mr-3"></i>
+                                <div>
+                                    <p class="font-medium">Spesialisasi</p>
+                                    <p class="text-gray-600">CAD Design, Mechanical Analysis, Manufacturing Process, and
+                                        Management Team Collaboration</p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Skills Section -->
+                    <div class="mt-8">
+                        <h4 class="text-lg font-bold mb-4 text-gray-800">Technical Skills</h4>
+                        <div class="flex flex-wrap gap-2">
+                            <span
+                                class="skill-badge bg-[#00539F]/10 text-[#00539F] px-3 py-1 rounded-full text-sm">Mechanical
+                                Design</span>
+                            <span class="skill-badge bg-[#00539F]/10 text-[#00539F] px-3 py-1 rounded-full text-sm">CAD
+                                Modeling</span>
+                            <span
+                                class="skill-badge bg-[#00539F]/10 text-[#00539F] px-3 py-1 rounded-full text-sm">Stress
+                                Analysis</span>
+                            <span
+                                class="skill-badge bg-[#00539F]/10 text-[#00539F] px-3 py-1 rounded-full text-sm">Reverse
+                                Engineering</span>
+                            <span
+                                class="skill-badge bg-[#00539F]/10 text-[#00539F] px-3 py-1 rounded-full text-sm">Manufacturing
+                                Process</span>
+                            <span
+                                class="skill-badge bg-[#00539F]/10 text-[#00539F] px-3 py-1 rounded-full text-sm">System
+                                Control</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="md:w-2/3 md:pl-12">
+                    <h3 class="text-2xl font-bold mb-6 text-gray-800">Ringkasan Profesional</h3>
+                    <p class="text-gray-700 mb-4">
+                        Mahasiswa Teknik Perancangan dan Konstruksi Mesin dengan fokus pada desain engineering serta
+                        kompetensi teknis di bidang mekatronika, manufaktur, dan sistem kontrol. Memiliki kemampuan
+                        dalam perancangan dan analisis komponen mesin, pembuatan serta interpretasi gambar teknik sesuai
+                        standar, dan penguasaan perangkat lunak CAD seperti AutoCAD dan SolidWorks.
+                    </p>
+                    <p class="text-gray-700 mb-6">
+                        Memahami prinsip integrasi sistem mekanik–elektrik, dasar aktuator dan sensor, serta konsep
+                        sistem kontrol dasar. Memiliki pengetahuan proses manufaktur, pemilihan material, dan
+                        pertimbangan manufacturability dalam desain. Terbiasa bekerja secara analitis, teliti, dan
+                        berorientasi pada solusi teknis yang efisien dan aplikatif.
+                    </p>
+
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-4 mt-8">
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-cogs text-[#00539F]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Mechanical Design</h4>
+                                <p class="text-sm text-gray-600">Perancangan & analisis komponen</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-cube text-[#00539F]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">3D Modeling</h4>
+                                <p class="text-sm text-gray-600">CAD & reverse engineering</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-chart-bar text-[#00539F]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">CAE Analysis</h4>
+                                <p class="text-sm text-gray-600">Stress & structural analysis</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-10 h-10 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-industry text-[#00539F]"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold">Manufacturing</h4>
+                                <p class="text-sm text-gray-600">Proses & material selection</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Software Skills Section -->
+    <section id="software" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Software Skills</h2>
+                <div class="w-20 h-1 bg-[#00539F] mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Penguasaan perangkat lunak CAD/CAM dan engineering
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 max-w-4xl mx-auto">
+
+                <!-- AutoCAD -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-drafting-compass text-[#00539F] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">AutoCAD (OK)</h3>
+                                    <p class="text-gray-600 text-sm">2D Drafting & Design</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#00539F]">70%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 70%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Mampu membuat gambar teknik 2D yang detail sesuai standar industri
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- SolidWorks -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cube text-[#00539F] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">SolidWorks (OK)</h3>
+                                    <p class="text-gray-600 text-sm">3D Modeling & Assembly</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#00539F]">90%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 90%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Pengalaman dalam pemodelan 3D, perakitan, pembuatan drawing, dan CAE
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Mastercam -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-cogs text-[#00539F] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Mastercam</h3>
+                                    <p class="text-gray-600 text-sm">CAM Programming</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#00539F]">65%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 65%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Pemrograman CAM untuk mesin CNC milling dan turning
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- FluidSIM -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-project-diagram text-[#00539F] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">FluidSIM</h3>
+                                    <p class="text-gray-600 text-sm">Hydraulic & Pneumatic Simulation</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#00539F]">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Simulasi sistem pneumatik dan hidrolik
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Cimatron -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-industry text-[#00539F] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">Cimatron (OK)</h3>
+                                    <p class="text-gray-600 text-sm">CAM Programming</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#00539F]">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Pemrograman CAM untuk mesin CNC milling dan turning
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- CIMCO -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden border border-gray-200 h-full">
+                        <div class="p-6">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-[#00539F]/10 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-terminal text-[#00539F] text-xl"></i>
+                                </div>
+                                <div>
+                                    <h3 class="text-xl font-bold text-gray-800">CIMCO</h3>
+                                    <p class="text-gray-600 text-sm">CNC Communication & DNC</p>
+                                </div>
+                            </div>
+                            <div class="mb-4">
+                                <div class="flex justify-between mb-1">
+                                    <span class="text-sm font-medium text-gray-700">Skill Level</span>
+                                    <span class="text-sm font-bold text-[#00539F]">60%</span>
+                                </div>
+                                <div class="skill-bar">
+                                    <div class="skill-progress" style="width: 60%"></div>
+                                </div>
+                            </div>
+                            <p class="text-gray-700 text-sm">
+                                Monitoring dan transfer program CNC
+                            </p>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </section>
+
+    <!-- Certificates Section -->
+    <section id="certificates" class="py-16 bg-gray-50">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Sertifikasi, Seminar & Pengalaman Organisasi
+                </h2>
+                <div class="w-20 h-1 bg-[#00539F] mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">
+                    Dokumentasi partisipasi kegiatan industri, seminar akademik,
+                    sertifikasi profesional, serta pengalaman organisasi di bidang teknik mesin.
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-6">
+
+                <!-- Certificate 1 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif1.jpeg" alt="Panitia Kunjungan Industri HMMI"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Panitia Kunjungan Industri – PT Hyundai Motors Manufacturing Indonesia (HMMI)
+                            </h3>
+                            <p class="text-gray-600 mb-3 text-sm">
+                                Kepanitiaan & Koordinasi Kegiatan Industri
+                            </p>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Sertifikat sebagai panitia dalam program kunjungan industri
+                                PT Hyundai Motors Manufacturing Indonesia (HMMI) yang
+                                bertujuan memberikan wawasan langsung mengenai proses manufaktur otomotif.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif1.jpeg')"
+                                class="bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif1.pdf" target="_blank"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 2 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif2.jpeg" alt="Seminar Art of Design"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Seminar Teknik Mesin – Art of Design
+                            </h3>
+                            <p class="text-gray-600 mb-3 text-sm">
+                                Kuliah Dosen Tamu & Pengembangan Desain Engineering
+                            </p>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Sertifikat peserta seminar kuliah dosen tamu Jurusan Teknik Mesin
+                                dengan tema “Art of Design” yang membahas konsep desain,
+                                kreativitas, dan penerapan dalam dunia industri.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2023</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif2.jpeg')"
+                                class="bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif2.pdf" target="_blank"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 3 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif3.jpeg" alt="CSWA Mechanical Design"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Certified SOLIDWORKS Associate (CSWA-MD)
+                            </h3>
+                            <p class="text-gray-600 mb-3 text-sm">
+                                Sertifikasi Internasional Mechanical Design
+                            </p>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Sertifikasi resmi Certified SOLIDWORKS Associate – Mechanical Design (CSWA-MD)
+                                yang memvalidasi kemampuan dalam 3D modeling, assembly,
+                                dan pembuatan engineering drawing sesuai standar industri.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif3.jpeg')"
+                                class="bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif3.pdf" target="_blank"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 4 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif4.jpeg" alt="PKKMB"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                PKKMB (Pengenalan Kehidupan Kampus Mahasiswa Baru)
+                            </h3>
+                            <p class="text-gray-600 mb-3 text-sm">
+                                Program Orientasi Akademik
+                            </p>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Sertifikat partisipasi dalam kegiatan PKKMB sebagai bagian dari
+                                proses orientasi akademik dan pengenalan sistem pendidikan tinggi.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif4.jpeg')"
+                                class="bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif4.pdf" target="_blank"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 5 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif5.jpeg" alt="Seminar Teknik Mesin"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Seminar Teknik Mesin – Kuliah Dosen Tamu
+                            </h3>
+                            <p class="text-gray-600 mb-3 text-sm">
+                                Pengembangan Akademik & Wawasan Industri
+                            </p>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Sertifikat peserta seminar kuliah dosen tamu pada Jurusan Teknik Mesin
+                                sebagai bagian dari pengembangan wawasan keilmuan dan industri.
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2024</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif5.jpeg')"
+                                class="bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif5.pdf" target="_blank"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Certificate 6 -->
+                <div class="fade-in hover-card">
+                    <div
+                        class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col hover:shadow-lg transition-shadow duration-300">
+                        <div class="h-48 bg-white flex items-center justify-center p-4 border-b">
+                            <img src="assets/img/sertif/sertif6.jpeg" alt="Wakil Manager Polban EV"
+                                class="h-full w-full object-contain rounded-md">
+                        </div>
+
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">
+                                Wakil Manager – Polban Electric Vehicle (EV) Team
+                            </h3>
+                            <p class="text-gray-600 mb-3 text-sm">
+                                Kepemimpinan & Manajemen Tim Riset
+                            </p>
+                            <p class="text-gray-700 mb-4 text-sm">
+                                Sertifikat kepengurusan 2023–2024 sebagai Wakil Manager
+                                tim riset kendaraan listrik Politeknik Negeri Bandung (Polban-EV).
+                            </p>
+                            <div class="flex items-center text-gray-600 text-sm">
+                                <i class="fas fa-calendar-alt mr-2"></i>
+                                <span>2023 - 2024</span>
+                            </div>
+                        </div>
+
+                        <div class="px-5 pb-5 grid grid-cols-2 gap-2">
+                            <button onclick="openCertificateModal('assets/img/sertif/sertif6.jpeg')"
+                                class="bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm">
+                                <i class="fas fa-expand mr-1"></i> Perbesar
+                            </button>
+                            <a href="assets/img/sertif/sertif6.pdf" target="_blank"
+                                class="bg-gray-200 hover:bg-gray-300 text-gray-800 font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-download mr-1"></i> PDF
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <p class="text-gray-600">
+                    Total <span class="font-bold text-[#00539F]">6 Sertifikat & Pengalaman</span> telah diperoleh
+                </p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Modal for Certificate View -->
+    <div id="certificateModal"
+        class="fixed inset-0 bg-black bg-opacity-75 z-50 hidden flex items-center justify-center p-4">
+        <div class="bg-white rounded-lg max-w-4xl w-full max-h-[90vh] overflow-hidden">
+            <div class="flex justify-between items-center p-4 border-b">
+                <h3 class="text-xl font-bold text-gray-800">Detail Sertifikat</h3>
+                <button onclick="closeCertificateModal()" class="text-gray-500 hover:text-gray-700 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4 overflow-auto max-h-[80vh]">
+                <img id="modalCertificateImage" src="" alt="Certificate" class="w-full h-auto rounded-md">
+            </div>
+            <div class="p-4 border-t text-right">
+                <button onclick="closeCertificateModal()"
+                    class="bg-gray-300 hover:bg-gray-400 text-gray-800 font-medium py-2 px-4 rounded-lg transition-colors duration-300">
+                    Tutup
+                </button>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript for Certificate Modal -->
+    <script>
+        function openCertificateModal(imageSrc) {
+            const modal = document.getElementById('certificateModal');
+            const modalImage = document.getElementById('modalCertificateImage');
+
+            modalImage.src = imageSrc;
+            modal.classList.remove('hidden');
+            document.body.style.overflow = 'hidden'; // Prevent scrolling
+        }
+
+        function closeCertificateModal() {
+            const modal = document.getElementById('certificateModal');
+            modal.classList.add('hidden');
+            document.body.style.overflow = 'auto'; // Re-enable scrolling
+        }
+
+        // Close modal when clicking outside the image
+        document.getElementById('certificateModal').addEventListener('click', function (e) {
+            if (e.target === this) {
+                closeCertificateModal();
+            }
+        });
+
+        // Close modal with Escape key
+        document.addEventListener('keydown', function (e) {
+            if (e.key === 'Escape') {
+                closeCertificateModal();
+            }
+        });
+    </script>
+
+    <!-- Portfolio Section -->
+    <section id="portfolio" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Portfolio Proyek</h2>
+                <div class="w-20 h-1 bg-[#00539F] mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Kumpulan proyek desain dan rekayasa yang telah saya
+                    kerjakan
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
+                <!-- Project 1 -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col">
+                        <div class="h-48 bg-white flex items-center justify-center p-4">
+                            <img src="assets/img/portofolio/porto1.jpg" alt="Battery Assembly for Electric Golfcar"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">Battery Assembly for Electric Golfcar</h3>
+                            <p class="text-gray-700 mb-3 text-sm">Worked Collaboratively within Assembly Process from
+                                Electric Golfcar</p>
+                            <!-- <div class="flex items-center text-gray-600">
+                                <i class="fas fa-calendar-alt mr-2 text-xs"></i>
+                                <span class="text-xs">Proyek Kompetisi 2024</span>
+                            </div> -->
+                        </div>
+                        <div class="px-5 pb-5">
+                            <a href="https://www.linkedin.com/in/rafi-febrian-nugroho-359732380/overlay/Project/1612024181/treasury/?profileId=ACoAAF4UlnUB348DkTieMHcRsvEk5nKbwijuaLw"
+                                target="_blank"
+                                class="block w-full bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-eye mr-2"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 2s -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col">
+                        <div class="h-48 bg-white flex items-center justify-center p-4">
+                            <img src="assets/img/portofolio/porto2.jpg"
+                                alt="Design and Project Simple Mechanism Particle Board Press Machine"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">Design and Project Simple Mechanism
+                                Particle Board Press Machine</h3>
+                            <p class="text-gray-700 mb-3 text-sm">Design and Concept for Simple Mechanism Particle Board
+                                Press Machine that Machine Improve and Optimize for use press Particle Board with mixing
+                                the adhesive materials, so that the board can be used later</p>
+                            <!-- <div class="flex items-center text-gray-600">
+                                <i class="fas fa-calendar-alt mr-2 text-xs"></i>
+                                <span class="text-xs">Proyek Analisis 2025</span>
+                            </div> -->
+                        </div>
+                        <div class="px-5 pb-5">
+                            <a href="https://www.linkedin.com/in/rafi-febrian-nugroho-359732380/overlay/Project/1301115273/treasury/?profileId=ACoAAF4UlnUB348DkTieMHcRsvEk5nKbwijuaLw"
+                                target="_blank"
+                                class="block w-full bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-eye mr-2"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 3 -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col">
+                        <div class="h-48 bg-white flex items-center justify-center p-4">
+                            <img src="assets/img/portofolio/porto3.jpg" alt="Electric Golfcar"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">Electric Golfcar</h3>
+                            <p class="text-gray-700 mb-3 text-sm">- Project Planning and Team Management Leader to lead
+                                the team in a structured work
+                                - Design and Optimize Structure, Mechanical System, and Electrical System
+                                - Rebuild Design to improve performance, ergonomics and strength
+                                - Conduct FEA analysis to consider safety factors and make the Electric Golfcar sturdy
+                                and safe.
+                                -Carry out manufacturing of frames, brackets and other components in accordance with
+                                design procedures.</p>
+                            <!-- <div class="flex items-center text-gray-600">
+                                <i class="fas fa-calendar-alt mr-2 text-xs"></i>
+                                <span class="text-xs">Proyek Industri 2025</span>
+                            </div> -->
+                        </div>
+                        <div class="px-5 pb-5">
+                            <a href="https://www.linkedin.com/in/rafi-febrian-nugroho-359732380/overlay/Project/1621859838/treasury/?profileId=ACoAAF4UlnUB348DkTieMHcRsvEk5nKbwijuaLw"
+                                target="_blank"
+                                class="block w-full bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-eye mr-2"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 4 -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col">
+                        <div class="h-48 bg-white flex items-center justify-center p-4">
+                            <img src="assets/img/portofolio/porto4.jpg" alt="Failure Analysis of Front Shock Breaker"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">Failure Analysis of Front Shock Breaker
+                            </h3>
+                            <p class="text-gray-700 mb-3 text-sm">Analyzed the failure of a motorcycle front shock
+                                breaker using Micro Vickers Hardness testing, metallography, and SolidWorks CAE
+                                simulation to determine the root cause of failure.</p>
+                            <!-- <div class="flex items-center text-gray-600">
+                                <i class="fas fa-calendar-alt mr-2 text-xs"></i>
+                                <span class="text-xs">Proyek Desain 2023</span>
+                            </div> -->
+                        </div>
+                        <div class="px-5 pb-5">
+                            <a href="https://www.linkedin.com/in/rafi-febrian-nugroho-359732380/overlay/Project/1621859838/image-list/?profileId=ACoAAF4UlnUB348DkTieMHcRsvEk5nKbwijuaLw"
+                                target="_blank"
+                                class="block w-full bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-eye mr-2"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Project 5 -->
+                <div class="fade-in hover-card">
+                    <div class="bg-white rounded-xl shadow-md overflow-hidden h-full flex flex-col">
+                        <div class="h-48 bg-white flex items-center justify-center p-4">
+                            <img src="assets/img/portofolio/porto5.jpg"
+                                alt="Reverse Engineering of an Automatic Water Dispenser System"
+                                class="w-full h-full object-contain rounded-lg">
+                        </div>
+                        <div class="p-5 flex-grow">
+                            <h3 class="text-lg font-bold mb-2 text-gray-800">Reverse Engineering of an Automatic Water
+                                Dispenser System</h3>
+                            <p class="text-gray-700 mb-3 text-sm">Conducted reverse engineering of an automatic water
+                                dispenser designed for direct installation onto a water gallon to improve user
+                                convenience. The system integrates instrumentation features that allow users to dispense
+                                and drink water automatically, enhancing usability and operational efficiency.</p>
+                            <!-- <div class="flex items-center text-gray-600">
+                                <i class="fas fa-calendar-alt mr-2 text-xs"></i>
+                                <span class="text-xs">Proyek Desain 2023</span>
+                            </div> -->
+                        </div>
+                        <div class="px-5 pb-5">
+                            <a href="https://www.linkedin.com/in/rafi-febrian-nugroho-359732380/overlay/Project/1301551581/image-list/?profileId=ACoAAF4UlnUB348DkTieMHcRsvEk5nKbwijuaLw"
+                                target="_blank"
+                                class="block w-full bg-[#00539F] hover:bg-[#004080] text-white font-medium py-2 rounded-lg transition-colors duration-300 text-sm text-center">
+                                <i class="fas fa-eye mr-2"></i> Lihat Detail
+                            </a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="text-center mt-12 fade-in">
+                <p class="text-gray-600">Total <span class="font-bold text-[#00539F]">5 Proyek</span> telah berhasil
+                    diselesaikan</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- Galery projects section -->
+    <section id="gallery" class="py-16 bg-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Galeri Proyek</h2>
+                <div class="w-20 h-1 bg-[#00539F] mx-auto"></div>
+                <p class="text-gray-600 mt-4 max-w-2xl mx-auto">Dokumentasi visual dari berbagai proyek dan aktivitas
+                    teknik
+                </p>
+            </div>
+
+            <!-- Gallery Grid -->
+            <div class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-4 fade-in">
+
+                <!-- Image 2 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek1.jpg" alt="Proyek 1"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 3 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek2.jpg" alt="Proyek 2"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 4 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek3.jpg" alt="Proyek 3"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 5 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek4.jpg" alt="Proyek 4"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 6 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek5.jpg" alt="Proyek 5"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 7 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek6.jpg" alt="Proyek 6"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 8 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek7.jpg" alt="Proyek 7"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 9 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek8.jpg" alt="Proyek 8"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 10 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek9.jpg" alt="Proyek 9"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 11 -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek10.jpg" alt="Proyek 10"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 12 (Baru) -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek11.jpg" alt="Proyek 11"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 13 (Baru) -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek12.jpg" alt="Proyek 12"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+                <!-- Image 14 (Baru) -->
+                <div
+                    class="group relative overflow-hidden rounded-lg shadow-md hover:shadow-xl transition-all duration-300 cursor-pointer">
+                    <img src="assets/img/proyek/proyek13.jpg" alt="Proyek 13"
+                        class="w-full h-64 object-cover group-hover:scale-110 transition-transform duration-500">
+                </div>
+
+
+            </div>
+
+            <!-- Modal for Image View -->
+            <div id="imageModal"
+                class="fixed inset-0 bg-black bg-opacity-90 z-50 hidden flex items-center justify-center p-4">
+                <div class="relative max-w-6xl w-full max-h-[90vh]">
+                    <button onclick="closeImageModal()"
+                        class="absolute -top-12 right-0 text-white text-3xl hover:text-gray-300 transition-colors">
+                        <i class="fas fa-times"></i>
+                    </button>
+                    <div class="overflow-hidden rounded-lg">
+                        <img id="modalImage" src="" alt="Gallery Image"
+                            class="w-full h-auto max-h-[80vh] object-contain">
+                    </div>
+
+                    <!-- Navigation Arrows -->
+                    <button onclick="changeImage(-1)"
+                        class="absolute left-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 transition-colors">
+                        <i class="fas fa-chevron-left"></i>
+                    </button>
+                    <button onclick="changeImage(1)"
+                        class="absolute right-4 top-1/2 transform -translate-y-1/2 text-white text-3xl hover:text-gray-300 transition-colors">
+                        <i class="fas fa-chevron-right"></i>
+                    </button>
+
+                    <!-- Image Counter -->
+                    <div
+                        class="absolute bottom-4 left-1/2 transform -translate-x-1/2 bg-black/50 text-white px-4 py-2 rounded-full text-sm">
+                        <span id="currentImage">1</span> / <span id="totalImages">19</span>
+                    </div>
+                </div>
+            </div>
+
+            <!-- JavaScript for Gallery -->
+            <script>
+                // Get all gallery images
+                const galleryImages = document.querySelectorAll('#gallery img');
+                const modalImage = document.getElementById('modalImage');
+                const currentImageSpan = document.getElementById('currentImage');
+                const totalImagesSpan = document.getElementById('totalImages');
+
+                let currentImageIndex = 0;
+                const images = Array.from(galleryImages).map(img => ({
+                    src: img.src,
+                    alt: img.alt
+                }));
+
+                // Set total images count to 19
+                totalImagesSpan.textContent = images.length;
+
+                // Add click event to each image
+                galleryImages.forEach((img, index) => {
+                    img.addEventListener('click', () => {
+                        currentImageIndex = index;
+                        openImageModal();
+                    });
+                });
+
+                function openImageModal() {
+                    const modal = document.getElementById('imageModal');
+                    modalImage.src = images[currentImageIndex].src;
+                    modalImage.alt = images[currentImageIndex].alt;
+                    currentImageSpan.textContent = currentImageIndex + 1;
+                    modal.classList.remove('hidden');
+                    document.body.style.overflow = 'hidden';
+                }
+
+                function closeImageModal() {
+                    const modal = document.getElementById('imageModal');
+                    modal.classList.add('hidden');
+                    document.body.style.overflow = 'auto';
+                }
+
+                function changeImage(direction) {
+                    currentImageIndex += direction;
+
+                    // Loop around
+                    if (currentImageIndex < 0) {
+                        currentImageIndex = images.length - 1;
+                    } else if (currentImageIndex >= images.length) {
+                        currentImageIndex = 0;
+                    }
+
+                    modalImage.src = images[currentImageIndex].src;
+                    modalImage.alt = images[currentImageIndex].alt;
+                    currentImageSpan.textContent = currentImageIndex + 1;
+                }
+
+                // Close modal with Escape key
+                document.addEventListener('keydown', function (e) {
+                    if (e.key === 'Escape') {
+                        closeImageModal();
+                    } else if (e.key === 'ArrowLeft') {
+                        changeImage(-1);
+                    } else if (e.key === 'ArrowRight') {
+                        changeImage(1);
+                    }
+                });
+
+                // Close modal when clicking outside the image
+                document.getElementById('imageModal').addEventListener('click', function (e) {
+                    if (e.target === this) {
+                        closeImageModal();
+                    }
+                });
+            </script>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-16 bg-gradient-to-r from-[#00539F] to-[#00AEEF] text-white">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-12 fade-in">
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">Hubungi Saya</h2>
+                <div class="w-20 h-1 bg-yellow-400 mx-auto"></div>
+                <p class="mt-4 max-w-2xl mx-auto">Saya terbuka untuk peluang karir, proyek kolaborasi, atau diskusi
+                    tentang teknik mesin dan desain</p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-12">
+                <div class="fade-in">
+                    <h3 class="text-2xl font-bold mb-6">Informasi Kontak</h3>
+
+                    <div class="space-y-6">
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-user text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Nama</h4>
+                                <p>Rafi Febrian Nugroho</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-graduation-cap text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Jurusan</h4>
+                                <p>Teknik Perancangan & Konstruksi Mesin</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-map-marker-alt text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Alamat</h4>
+                                <p>Jl. Babakan Baru NO.18, Kota Bandung, Jawa Barat 40125</p>
+                            </div>
+                        </div>
+
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fas fa-envelope text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">Email</h4>
+                                <p>rafifebrianporto@gmail.com</p>
+                            </div>
+                        </div>
+
+                        <!-- WhatsApp Section -->
+                        <div class="flex items-start">
+                            <div class="w-12 h-12 bg-white/20 rounded-lg flex items-center justify-center mr-4">
+                                <i class="fab fa-whatsapp text-xl"></i>
+                            </div>
+                            <div>
+                                <h4 class="font-bold text-lg">WhatsApp</h4>
+                                <p>-</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="mt-10">
+                        <h4 class="font-bold text-lg mb-4">Ikuti Saya</h4>
+                        <div class="flex space-x-4">
+                            <!-- LinkedIn -->
+                            <a href="https://www.linkedin.com/in/muhammad-zein-aulia-330533363/" target="_blank"
+                                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
+                                <i class="fab fa-linkedin-in"></i>
+                            </a>
+                            <!-- Instagram -->
+                            <a href="https://www.instagram.com/mzeinnn?igsh=MTI3MHk2dnQ5dTN1bA==" target="_blank"
+                                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
+                                <i class="fab fa-instagram"></i>
+                            </a>
+                            <!-- Email -->
+                            <a href="mailto:rafifebrianporto@gmail.com" target="_blank"
+                                class="w-10 h-10 bg-white/20 rounded-full flex items-center justify-center hover:bg-white/30 transition-colors duration-300">
+                                <i class="fas fa-envelope"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="fade-in">
+                    <div class="bg-white/10 backdrop-blur-sm rounded-xl p-6 md:p-8">
+                        <h3 class="text-2xl font-bold mb-6">Download CV</h3>
+                        <p class="mb-8">Unduh CV lengkap saya untuk informasi lebih detail tentang pendidikan,
+                            pengalaman proyek, dan keterampilan teknis yang saya miliki.</p>
+
+                        <div class="bg-white/20 rounded-lg p-6 mb-8">
+                            <div class="flex items-center mb-4">
+                                <div class="w-12 h-12 bg-white/30 rounded-lg flex items-center justify-center mr-4">
+                                    <i class="fas fa-file-pdf text-xl"></i>
+                                </div>
+                                <div>
+                                    <h4 class="font-bold text-lg">CV Rafi Febrian Nugroho</h4>
+                                    <p class="text-sm">Format PDF - Terbaru</p>
+                                </div>
+                            </div>
+                            <p class="text-sm mb-6">CV ini berisi informasi lengkap tentang latar belakang pendidikan,
+                                pengalaman proyek di bidang teknik mesin, keterampilan software CAD/CAE, dan pencapaian
+                                saya.</p>
+                            <a href="assets/CV/cv.pdf" download="Rafi_Febrian_Nugroho_CV.pdf"
+                                class="inline-flex items-center bg-white text-[#00539F] font-bold py-3 px-6 rounded-lg hover:bg-gray-100 transition-colors duration-300">
+                                <i class="fas fa-download mr-3"></i> Download CV (PDF)
+                            </a>
+                        </div>
+
+                        <div>
+                            <h4 class="font-bold text-lg mb-4">Atau kirim pesan</h4>
+                            <p class="mb-6">Jika Anda ingin berdiskusi tentang peluang kerja, proyek kolaborasi, atau
+                                konsultasi teknik, silakan hubungi saya melalui email atau WhatsApp.</p>
+                            <div class="flex flex-col sm:flex-row gap-4">
+                                <a href="mailto:rafifebrianporto@gmail.com"
+                                    class="inline-flex items-center justify-center bg-yellow-500 text-[#00539F] font-bold py-3 px-6 rounded-lg hover:bg-yellow-400 transition-colors duration-300">
+                                    <i class="fas fa-paper-plane mr-3"></i> Kirim Email
+                                </a>
+                                <a href="https://wa.me/-" target="_blank"
+                                    class="inline-flex items-center justify-center bg-green-500 text-white font-bold py-3 px-6 rounded-lg hover:bg-green-600 transition-colors duration-300">
+                                    <i class="fab fa-whatsapp mr-3"></i> Chat WhatsApp
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+
+
+    <!-- Footer -->
+    <footer class="bg-gray-900 text-white py-8">
+        <div class="container mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex flex-col md:flex-row justify-between items-center">
+                <div class="mb-6 md:mb-0">
+                    <h3 class="text-2xl font-bold gradient-text">Rafi Febrian Nugroho</h3>
+                    <p class="text-gray-400 mt-2">Mechanical Engineering Student | Design & Manufacturing Enthusiast</p>
+                </div>
+
+                <div class="text-center md:text-right">
+                    <p class="text-gray-400">© 2026 Rafi Febrian Nugroho. All rights reserved.</p>
+                    <p class="text-gray-500 text-sm mt-2">Portofolio Pribadi - Siap untuk Peluang Karir di Bidang Teknik
+                        Mesin</p>
+                </div>
+            </div>
+
+            <div class="mt-8 pt-8 border-t border-gray-800 text-center text-gray-500 text-sm">
+                <p>Website ini dibuat dengan HTML, Tailwind CSS, dan JavaScript Vanilla</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Modal for YouTube Video -->
+    <div id="video-modal" class="modal-overlay">
+        <div class="bg-white rounded-xl w-11/12 md:w-3/4 lg:w-2/3 max-w-4xl overflow-hidden">
+            <div class="flex justify-between items-center p-4 border-b border-gray-200">
+                <h3 class="text-xl font-bold text-gray-800">Portfolio Video</h3>
+                <button id="close-modal" class="text-gray-500 hover:text-gray-800 text-2xl">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="p-4">
+                <div class="relative pb-[56.25%] h-0">
+                    <iframe id="video-frame" class="absolute top-0 left-0 w-full h-full rounded-lg" src=""
+                        frameborder="0"
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+                        allowfullscreen></iframe>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/pdf.js/2.16.105/pdf.worker.min.js"></script>
+    <script>
+        // Function to open project detail (placeholder)
+        function openProjectDetail(projectId) {
+            alert('Detail untuk proyek ' + projectId + ' akan ditampilkan di sini. Fitur ini dalam pengembangan.');
+        }
+
+        // Existing JavaScript code for animations, modals, etc.
+        document.addEventListener('DOMContentLoaded', function () {
+            // Fade in animation
+            const fadeElements = document.querySelectorAll('.fade-in');
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('visible');
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            fadeElements.forEach(el => observer.observe(el));
+
+            // Mobile menu toggle
+            const hamburgerBtn = document.getElementById('hamburger-btn');
+            const mobileMenu = document.getElementById('mobile-menu');
+
+            if (hamburgerBtn && mobileMenu) {
+                hamburgerBtn.addEventListener('click', () => {
+                    hamburgerBtn.classList.toggle('active');
+                    mobileMenu.classList.toggle('hidden');
+                });
+            }
+
+            // Close mobile menu when clicking a link
+            const mobileLinks = document.querySelectorAll('#mobile-menu a');
+            mobileLinks.forEach(link => {
+                link.addEventListener('click', () => {
+                    hamburgerBtn.classList.remove('active');
+                    mobileMenu.classList.add('hidden');
+                });
+            });
+
+            // Navbar scroll effect
+            const navbar = document.getElementById('navbar');
+            window.addEventListener('scroll', () => {
+                if (window.scrollY > 100) {
+                    navbar.classList.add('shadow-lg');
+                } else {
+                    navbar.classList.remove('shadow-lg');
+                }
+            });
+
+            // Video modal functionality
+            const videoModal = document.getElementById('video-modal');
+            const closeModalBtn = document.getElementById('close-modal');
+            const videoFrame = document.getElementById('video-frame');
+
+            function openModal(videoId) {
+                videoFrame.src = `https://www.youtube.com/embed/${videoId}`;
+                videoModal.classList.add('active');
+                document.body.style.overflow = 'hidden';
+            }
+
+            function closeModal() {
+                videoFrame.src = '';
+                videoModal.classList.remove('active');
+                document.body.style.overflow = 'auto';
+            }
+
+            window.openModal = openModal;
+
+            if (closeModalBtn) {
+                closeModalBtn.addEventListener('click', closeModal);
+            }
+
+            videoModal.addEventListener('click', (e) => {
+                if (e.target === videoModal) {
+                    closeModal();
+                }
+            });
+
+            // Animate skill bars on scroll
+            const skillBars = document.querySelectorAll('.skill-progress');
+            const skillObserver = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const width = entry.target.style.width;
+                        entry.target.style.width = '0%';
+                        setTimeout(() => {
+                            entry.target.style.width = width;
+                        }, 100);
+                    }
+                });
+            }, { threshold: 0.5 });
+
+            skillBars.forEach(bar => skillObserver.observe(bar));
+        });
+    </script>
+</body>
+
+</html>
